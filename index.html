@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberQuiz | Segurança Digital</title>
+  <link rel="stylesheet" href="css/style.css"></head>
+<body>
+  <header class="topo">
+    <div class="container nav">
+      <a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span> Cyber<span>Quiz</span></a>
+      <span class="nav-info">PROJETO ADS • CIBERSEGURANÇA</span>
+    </div>
+  </header>
+  <main class="container">
+    <section id="inicio" class="inicio">
+      <div class="etiqueta"><span class="ponto"></span> DESAFIO DE SEGURANÇA DIGITAL</div>
+      <h1>Você está seguro <span>na internet?</span></h1>
+      <p class="descricao">Teste seus conhecimentos sobre senhas, golpes virtuais e proteção de dados. Um quiz rápido para aprender a navegar com mais segurança.</p>
+      <div class="info-quiz">
+        <div><strong>10</strong><small>PERGUNTAS</small></div>
+        <div><strong>4</strong><small>ALTERNATIVAS</small></div>
+      </div>
+      <button id="start-button" class="primary" type="button">Começar desafio <span>→</span></button>
+    </section>
+    <section id="jogo" class="jogo" hidden>
+      <div class="jogo-cabecalho"><div><span class="etiqueta">HORA DO DESAFIO</span><h2>Teste seus conhecimentos</h2></div><span class="nivel">Nível iniciante</span></div>
+      <article id="quiz-card" class="quiz-card">
+        <div class="question-top"><span id="question-count"></span><span class="categoria">● Cibersegurança</span></div>
+        <div class="progress"><div id="progress-fill"></div></div>
+        <h3 id="question-text"></h3>
+        <div id="answers" class="answers"></div>
+        <div id="feedback" class="feedback" role="status" hidden></div>
+        <div class="card-bottom"><span id="score-label"></span><button id="next-button" class="next" disabled>Próxima pergunta →</button></div>
+      </article>
+    </section>
+  </main>
+  <footer>CyberQuiz • Projeto de Desenvolvimento Front-end para Web — ADS</footer>
+  <script src="js/script.js"></script></body>
+</html>
