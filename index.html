@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CyberQuiz | Segurança Digital</title>
-  <link rel="stylesheet" href="css/style.css"></head>
+  <link rel="stylesheet" href="css/style.css">
+</head>
 <body>
   <header class="topo">
     <div class="container nav">
@@ -17,14 +18,24 @@
       <div class="etiqueta"><span class="ponto"></span> DESAFIO DE SEGURANÇA DIGITAL</div>
       <h1>Você está seguro <span>na internet?</span></h1>
       <p class="descricao">Teste seus conhecimentos sobre senhas, golpes virtuais e proteção de dados. Um quiz rápido para aprender a navegar com mais segurança.</p>
+      
+      <div class="campo-nome" style="margin: 1.5rem 0;">
+        <label for="player-name" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Informe seu nome para jogar:</label>
+        <input type="text" id="player-name" placeholder="Digite seu nome ou apelido" style="padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #ccc; width: 100%; max-width: 320px; font-size: 1rem;" required />
+      </div>
+
       <div class="info-quiz">
         <div><strong>10</strong><small>PERGUNTAS</small></div>
         <div><strong>4</strong><small>ALTERNATIVAS</small></div>
       </div>
       <button id="start-button" class="primary" type="button">Começar desafio <span>→</span></button>
     </section>
+
     <section id="jogo" class="jogo" hidden>
-      <div class="jogo-cabecalho"><div><span class="etiqueta">HORA DO DESAFIO</span><h2>Teste seus conhecimentos</h2></div><span class="nivel">Nível iniciante</span></div>
+      <div class="jogo-cabecalho">
+        <div><span class="etiqueta">HORA DO DESAFIO</span><h2>Teste seus conhecimentos</h2></div>
+        <span class="nivel">Nível iniciante</span>
+      </div>
       <article id="quiz-card" class="quiz-card">
         <div class="question-top"><span id="question-count"></span><span class="categoria">● Cibersegurança</span></div>
         <div class="progress"><div id="progress-fill"></div></div>
@@ -36,5 +47,6 @@
     </section>
   </main>
   <footer>CyberQuiz • Projeto de Desenvolvimento Front-end para Web — ADS</footer>
-  <script src="js/script.js"></script></body>
+  <script src="js/script.js"></script>
+</body>
 </html>
