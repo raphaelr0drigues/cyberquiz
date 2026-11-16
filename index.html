@@ -9,26 +9,27 @@
 <body>
   <header class="topo">
     <div class="container nav">
-      <a class="logo" href="index.html"><span class="logo-icon">&lt;/&gt;</span> Cyber<span>Quiz</span></a>
+      <a class="logo" href="index.html"><span class="logo-icon" aria-hidden="true">&lt;/&gt;</span> Cyber<span>Quiz</span></a>
       <span class="nav-info">PROJETO ADS • CIBERSEGURANÇA</span>
     </div>
   </header>
+
   <main class="container">
     <section id="inicio" class="inicio">
-      <div class="etiqueta"><span class="ponto"></span> DESAFIO DE SEGURANÇA DIGITAL</div>
+      <div class="etiqueta"><span class="ponto" aria-hidden="true"></span> DESAFIO DE SEGURANÇA DIGITAL</div>
       <h1>Você está seguro <span>na internet?</span></h1>
       <p class="descricao">Teste seus conhecimentos sobre senhas, golpes virtuais e proteção de dados. Um quiz rápido para aprender a navegar com mais segurança.</p>
       
-      <div class="campo-nome" style="margin: 1.5rem 0;">
-        <label for="player-name" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Informe seu nome para jogar:</label>
-        <input type="text" id="player-name" placeholder="Digite seu nome ou apelido" style="padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #ccc; width: 100%; max-width: 320px; font-size: 1rem;" required />
+      <div class="campo-nome">
+        <label for="player-name">Informe seu nome para jogar:</label>
+        <input type="text" id="player-name" placeholder="Digite seu nome ou apelido" autocomplete="name" required>
       </div>
 
       <div class="info-quiz">
         <div><strong>10</strong><small>PERGUNTAS</small></div>
         <div><strong>4</strong><small>ALTERNATIVAS</small></div>
       </div>
-      <button id="start-button" class="primary" type="button">Começar desafio <span>→</span></button>
+      <button id="start-button" class="primary" type="button">Começar desafio <span aria-hidden="true">→</span></button>
     </section>
 
     <section id="jogo" class="jogo" hidden>
@@ -38,14 +39,19 @@
       </div>
       <article id="quiz-card" class="quiz-card">
         <div class="question-top"><span id="question-count"></span><span class="categoria">● Cibersegurança</span></div>
-        <div class="progress"><div id="progress-fill"></div></div>
+        <div class="progress" role="progressbar" aria-label="Progresso do quiz" aria-valuemin="0" aria-valuemax="100"><div id="progress-fill"></div></div>
         <h3 id="question-text"></h3>
         <div id="answers" class="answers"></div>
-        <div id="feedback" class="feedback" role="status" hidden></div>
-        <div class="card-bottom"><span id="score-label"></span><button id="next-button" class="next" disabled>Próxima pergunta →</button></div>
+        <div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+        <div class="card-bottom"><span id="score-label"></span><button id="next-button" class="next" type="button" disabled>Próxima pergunta →</button></div>
       </article>
     </section>
+
+    <section id="resultado" class="jogo" hidden>
+      <article id="resultado-card" class="quiz-card"></article>
+    </section>
   </main>
+
   <footer>CyberQuiz • Projeto de Desenvolvimento Front-end para Web — ADS</footer>
   <script src="js/script.js"></script>
 </body>
