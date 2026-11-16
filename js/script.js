@@ -48,12 +48,14 @@ function renderizar() {
   respondeu = false;
 
   const q = perguntas[indice];
+  const percentual = Math.round(((indice + 1) / perguntas.length) * 100);
 
   $('question-count').textContent =
     `PERGUNTA ${String(indice + 1).padStart(2, '0')} / ${perguntas.length}`;
 
-  $('progress-fill').style.width =
-    `${((indice + 1) / perguntas.length) * 100}%`;
+  const progressFill = $('progress-fill');
+  progressFill.style.width = `${percentual}%`;
+  progressFill.parentElement.setAttribute('aria-valuenow', percentual);
 
   $('question-text').textContent = q.pergunta;
 
@@ -64,7 +66,6 @@ function renderizar() {
     const botao = document.createElement('button');
     botao.type = 'button';
     botao.className = 'answer';
-    botao.setAttribute('tabindex', '0');
 
     const letra = document.createElement('b');
     letra.textContent = 'ABCD'[i];
@@ -73,14 +74,7 @@ function renderizar() {
     texto.textContent = alternativa;
 
     botao.append(letra, texto);
-
     botao.addEventListener('click', () => responder(i));
-    botao.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        responder(i);
-      }
-    });
 
     respostas.append(botao);
   });
@@ -147,16 +141,21 @@ function responder(i) {
 }
 
 function salvarERenderizarRanking() {
-  // Salva no sessionStorage
-  let ranking = JSON.parse(sessionStorage.getItem('ranking')) || [];
-  ranking.push({ nome: nomeJogador, pontos: pontos, total: perguntas.length });
+  const ranking = JSON.parse(sessionStorage.getItem('ranking')) || [];
+  const registroAtual = {
+    id: Date.now(),
+    nome: nomeJogador,
+    pontos: pontos,
+    total: perguntas.length
+  };
+
+  ranking.push(registroAtual);
   ranking.sort((a, b) => b.pontos - a.pontos);
   sessionStorage.setItem('ranking', JSON.stringify(ranking));
 
-  // Cria elemento visual do ranking
   const containerRanking = document.createElement('div');
   containerRanking.className = 'ranking-container';
-  
+
   const tituloRanking = document.createElement('h3');
   tituloRanking.textContent = 'Ranking da Sessão';
   containerRanking.append(tituloRanking);
@@ -164,7 +163,17 @@ function salvarERenderizarRanking() {
   ranking.forEach((item, index) => {
     const linha = document.createElement('div');
     linha.className = 'ranking-item';
-    linha.textContent = `${index + 1}º — ${item.nome} — ${item.pontos}/${item.total}`;
+    if (item.id === registroAtual.id) {
+      linha.classList.add('destaque');
+    }
+
+    const posNome = document.createElement('span');
+    posNome.textContent = `${index + 1}º — ${item.nome}`;
+
+    const placar = document.createElement('span');
+    placar.textContent = `${item.pontos}/${item.total}`;
+
+    linha.append(posNome, placar);
     containerRanking.append(linha);
   });
 
@@ -172,7 +181,10 @@ function salvarERenderizarRanking() {
 }
 
 function mostrarResultado() {
-  const cartao = $('quiz-card');
+  $('jogo').hidden = true;
+  $('resultado').hidden = false;
+
+  const cartao = $('resultado-card');
   cartao.replaceChildren();
 
   const etiqueta = document.createElement('div');
@@ -183,7 +195,8 @@ function mostrarResultado() {
   titulo.textContent = `${nomeJogador}, você acertou ${pontos} de ${perguntas.length}!`;
 
   const descricao = document.createElement('p');
-  descricao.textContent = 'Continue aprendendo sobre segurança digital.';
+  descricao.className = 'descricao';
+  descricao.textContent = 'Confira sua posição no ranking da sessão abaixo:';
 
   const rankingEl = salvarERenderizarRanking();
 
@@ -196,12 +209,10 @@ function mostrarResultado() {
     indice = 0;
     pontos = 0;
     respondeu = false;
-    
-    // Restaura visualmente a tela inicial
-    cartao.replaceChildren();
-    $('jogo').hidden = true;
+
+    $('resultado').hidden = true;
     $('inicio').hidden = false;
-    
+
     const inputNome = $('player-name');
     if (inputNome) {
       inputNome.value = '';
@@ -210,21 +221,10 @@ function mostrarResultado() {
   });
 
   cartao.append(etiqueta, titulo, descricao, rankingEl, reiniciar);
+  reiniciar.focus();
 }
 
-$('next-button').addEventListener('click', () => {
-  if (!respondeu) return;
-
-  indice++;
-
-  if (indice < perguntas.length) {
-    renderizar();
-  } else {
-    mostrarResultado();
-  }
-});
-
-$('start-button').addEventListener('click', () => {
+function iniciarQuiz() {
   const inputNome = $('player-name');
   const valorNome = inputNome ? inputNome.value.trim() : '';
 
@@ -241,10 +241,32 @@ $('start-button').addEventListener('click', () => {
   pontos = 0;
 
   $('inicio').hidden = true;
+  $('resultado').hidden = true;
   $('jogo').hidden = false;
 
   renderizar();
   window.scrollTo(0, 0);
+}
+
+$('next-button').addEventListener('click', () => {
+  if (!respondeu) return;
+
+  indice++;
+
+  if (indice < perguntas.length) {
+    renderizar();
+  } else {
+    mostrarResultado();
+  }
+});
+
+$('start-button').addEventListener('click', iniciarQuiz);
+
+$('player-name').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    iniciarQuiz();
+  }
 });
 
 carregarPerguntas();
