@@ -1,31 +1,42 @@
-# CyberQuiz
+CyberQuiz
+Trabalho em Grupo — TechQuiz | Desenvolvimento Front-end para Web (ADS — Universidade Braz Cubas).
 
-Trabalho de Desenvolvimento Front-end para Web — ADS.
+Link do Site Publicado
+Acesse o quiz online: [https://raphaelr0drigues.github.io/cyberquiz/](https://raphaelr0drigues.github.io/cyberquiz/)
 
-## Tema
-Cibersegurança. O site é um quiz com 10 perguntas sobre senhas, golpes e segurança na internet.
+Tema e Regras
+Tema: Cibersegurança e Segurança Digital (senhas, autenticação em dois fatores, phishing, ransomware, HTTPS e redes Wi-Fi públicas).
 
-## Integrantes
-- [Felipe Ryan Ribeiro Oliveira]
-- [Gabriel de Aquino Ninas]
-- [Guilherme Silva Freitas]
-- [Matheus Almeida da Mota]
-- [Raphael Henrique Rodrigues da Silva]
-- [Vinícius Gregório Oliveira Sanches]
+Regras:
 
-## Como executar
-1. Baixe os arquivos.
-2. Abra o `index.html` no navegador.
-3. Clique em **Começar desafio** e responda às perguntas.
+O jogador informa seu nome ou apelido na tela inicial para iniciar o desafio.
+O quiz apresenta 15 perguntas de múltipla escolha (4 alternativas cada), carregadas dinamicamente via fetch a partir de data/perguntas.json.
+Cada acerto soma 1 ponto. Ao responder, o sistema exibe feedback imediato com explicação educativa e link para a fonte oficial (CISA / MDN).
+Ao final, a pontuação é exibida junto ao Ranking da Sessão (armazenado via sessionStorage e ordenado da maior para a menor pontuação), com opção de jogar novamente.
 
-## Arquivos
-- `index.html`: estrutura das telas
-- `style.css`: aparência do site
-- `script.js`: funcionamento das perguntas
-- `data/perguntas.json`: perguntas, respostas, explicações e fontes
+Integrantes e Papéis
 
-## Organização do grupo
-Cada integrante deve trabalhar em uma branch e fazer seus próprios commits. Anotar aqui a divisão real das tarefas antes da entrega.
+Felipe Ryan Ribeiro Oliveira — Elaboração e revisão das perguntas, explicações e fontes (data/perguntas.json)
+Gabriel de Aquino Ninas — Estilização, layout responsivo e identidade visual (css/style.css)
+Guilherme Silva Freitas — Estruturação semântica HTML e revisão de acessibilidade (index.html)
+Matheus Almeida da Mota — Implementação do sistema de ranking em sessionStorage e fluxo de replay (js/script.js)
+Raphael Henrique Rodrigues da Silva — Lógica principal do quiz, validação do JSON via fetch e configuração de deploy/GitHub Pages (js/script.js e .github/workflows/static.yml)
+Vinícius Gregório Oliveira Sanches — Testes funcionais, validação de responsividade e documentação (README.md)
 
-## Entrega do CP1
-Publicar o site em HTTPS, adicionar os integrantes ao repositório e criar a tag `cp1-entrega`.
+Como Executar Localmente
+Como o projeto carrega o arquivo data/perguntas.json via fetch(), é necessário executá-lo por meio de um servidor HTTP local (abrir direto via file:// é bloqueado por CORS nos navegadores):
+
+Clone o repositório:
+git clone [https://github.com/raphaelr0drigues/cyberquiz.git](https://github.com/raphaelr0drigues/cyberquiz.git)
+🗂️ Estrutura do Projeto
+cyberquiz/
+├── .github/workflows/
+│   └── static.yml         # Pipeline de deploy automático no GitHub Pages
+├── css/
+│   └── style.css          # Estilização responsiva, contraste WCAG AA e estados de foco
+├── data/
+│   └── perguntas.json     # Banco com 15 questões, alternativas, explicações e fontes
+├── js/
+│   └── script.js          # Carregamento assíncrono, validação, lógica do quiz e ranking
+├── index.html             # Estrutura semântica das telas (início, jogo e resultado)
+└── README.md              # Documentação técnica e guia do projeto
