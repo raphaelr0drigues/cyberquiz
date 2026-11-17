@@ -5,30 +5,39 @@ Link do Site Publicado
 Acesse o quiz online: [https://raphaelr0drigues.github.io/cyberquiz/](https://raphaelr0drigues.github.io/cyberquiz/)
 
 Tema e Regras
+
 Tema: Cibersegurança e Segurança Digital (senhas, autenticação em dois fatores, phishing, ransomware, HTTPS e redes Wi-Fi públicas).
 
 Regras:
 
-O jogador informa seu nome ou apelido na tela inicial para iniciar o desafio.
-O quiz apresenta 15 perguntas de múltipla escolha (4 alternativas cada), carregadas dinamicamente via fetch a partir de data/perguntas.json.
-Cada acerto soma 1 ponto. Ao responder, o sistema exibe feedback imediato com explicação educativa e link para a fonte oficial (CISA / MDN).
-Ao final, a pontuação é exibida junto ao Ranking da Sessão (armazenado via sessionStorage e ordenado da maior para a menor pontuação), com opção de jogar novamente.
+- O jogador informa seu nome ou apelido na tela inicial para iniciar o desafio.
+  
+- O quiz apresenta 15 perguntas de múltipla escolha (4 alternativas cada), carregadas dinamicamente via fetch a partir de data/perguntas.json.
+  
+- Cada acerto soma 1 ponto. Ao responder, o sistema exibe feedback imediato com explicação educativa e link para a fonte oficial (CISA / MDN).
+  
+- Ao final, a pontuação é exibida junto ao Ranking da Sessão (armazenado via sessionStorage e ordenado da maior para a menor pontuação), com opção de jogar novamente.
 
 Integrantes e Papéis
 
-- Felipe Ryan Ribeiro Oliveira — Elaboração e revisão das perguntas, explicações e fontes (data/perguntas.json)
-- Gabriel de Aquino Ninas — Estilização, layout responsivo e identidade visual (css/style.css)
-- Guilherme Silva Freitas — Estruturação semântica HTML e revisão de acessibilidade (index.html)
-- Matheus Almeida da Mota — Implementação do sistema de ranking em sessionStorage e fluxo de replay (js/script.js)
-- Raphael Henrique Rodrigues da Silva — Lógica principal do quiz, validação do JSON via fetch e configuração de deploy/GitHub Pages (js/script.js e .github/workflows/static.yml)
+- Felipe Ryan Ribeiro Oliveira — Revisão e criação de novas perguntas, explicações e fontes (data/perguntas.json)
+- Gabriel de Aquino Ninas — Implementação do sistema de ranking em sessionStorage e fluxo de replay, lógica principal do quiz e validação do JSON via fetch (js/script.js)
+- Guilherme Silva Freitas — Estilização, layout responsivo e identidade visual (css/style.css)
+- Matheus Almeida da Mota — Implementação da primeira versão de perguntas com arquivo JSON, com explicações e fontes (data/perguntas.json)
+- Raphael Henrique Rodrigues da Silva — Estruturação semântica HTML e revisão de acessibilidade e configuração de deploy/GitHub Pages (index.html e .github/workflows/static.yml)
 - Vinícius Gregório Oliveira Sanches — Testes funcionais, validação de responsividade e documentação (README.md)
 
 Como Executar Localmente
+
 Como o projeto carrega o arquivo data/perguntas.json via fetch(), é necessário executá-lo por meio de um servidor HTTP local (abrir direto via file:// é bloqueado por CORS nos navegadores):
 
 Clone o repositório:
+
 git clone [https://github.com/raphaelr0drigues/cyberquiz.git](https://github.com/raphaelr0drigues/cyberquiz.git)
+
+
 🗂️ Estrutura do Projeto
+
 cyberquiz/
 ├── .github/workflows/
 │   └── static.yml         # Pipeline de deploy automático no GitHub Pages
