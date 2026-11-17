@@ -16,12 +16,12 @@ Ao final, a pontuação é exibida junto ao Ranking da Sessão (armazenado via s
 
 Integrantes e Papéis
 
-Felipe Ryan Ribeiro Oliveira — Elaboração e revisão das perguntas, explicações e fontes (data/perguntas.json)
-Gabriel de Aquino Ninas — Estilização, layout responsivo e identidade visual (css/style.css)
-Guilherme Silva Freitas — Estruturação semântica HTML e revisão de acessibilidade (index.html)
-Matheus Almeida da Mota — Implementação do sistema de ranking em sessionStorage e fluxo de replay (js/script.js)
-Raphael Henrique Rodrigues da Silva — Lógica principal do quiz, validação do JSON via fetch e configuração de deploy/GitHub Pages (js/script.js e .github/workflows/static.yml)
-Vinícius Gregório Oliveira Sanches — Testes funcionais, validação de responsividade e documentação (README.md)
+- Felipe Ryan Ribeiro Oliveira — Elaboração e revisão das perguntas, explicações e fontes (data/perguntas.json)
+- Gabriel de Aquino Ninas — Estilização, layout responsivo e identidade visual (css/style.css)
+- Guilherme Silva Freitas — Estruturação semântica HTML e revisão de acessibilidade (index.html)
+- Matheus Almeida da Mota — Implementação do sistema de ranking em sessionStorage e fluxo de replay (js/script.js)
+- Raphael Henrique Rodrigues da Silva — Lógica principal do quiz, validação do JSON via fetch e configuração de deploy/GitHub Pages (js/script.js e .github/workflows/static.yml)
+- Vinícius Gregório Oliveira Sanches — Testes funcionais, validação de responsividade e documentação (README.md)
 
 Como Executar Localmente
 Como o projeto carrega o arquivo data/perguntas.json via fetch(), é necessário executá-lo por meio de um servidor HTTP local (abrir direto via file:// é bloqueado por CORS nos navegadores):
