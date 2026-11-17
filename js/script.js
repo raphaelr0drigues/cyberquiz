@@ -11,7 +11,7 @@ async function carregarPerguntas() {
   if (botaoIniciar) botaoIniciar.disabled = true;
 
   try {
-    const resposta = await fetch('data/perguntas.json');
+    const resposta = await fetch('data/perguntas.json', { cache: 'no-store' });
 
     if (!resposta.ok) {
       throw new Error('Não foi possível carregar as perguntas.');
